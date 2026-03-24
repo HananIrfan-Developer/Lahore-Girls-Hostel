@@ -1,12 +1,10 @@
 User-agent: *
 Allow: /
 
-# Block private/admin sections
 Disallow: /admin/
 Disallow: /dashboard/
 Disallow: /attendance/
 Disallow: /students/
 Disallow: /private/
 
-# Sitemap location
 Sitemap: https://lahoregirlshostel.vercel.app/sitemap.xml
