@@ -1,0 +1,79 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user of the hostel management system (Admin, Owner, Staff).",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The user's unique ID." },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "owner", "staff", "public"] },
+        "createdAt": { "type": "timestamp" }
+      },
+      "required": ["uid", "email", "role", "createdAt"]
+    },
+    "Resident": {
+      "title": "Resident",
+      "description": "A girl residing in the hostel.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "roomNumber": { "type": "string" },
+        "contactDetails": { "type": "string" },
+        "guardianInfo": { "type": "string" },
+        "photoUrl": { "type": "string" },
+        "status": { "type": "string", "enum": ["inside", "outside"] },
+        "createdAt": { "type": "timestamp" },
+        "updatedAt": { "type": "timestamp" }
+      },
+      "required": ["id", "name", "roomNumber", "contactDetails", "guardianInfo", "status", "createdAt", "updatedAt"]
+    },
+    "Attendance": {
+      "title": "Attendance",
+      "description": "Daily attendance record for a resident.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "residentId": { "type": "string" },
+        "date": { "type": "string", "description": "YYYY-MM-DD format" },
+        "status": { "type": "string", "enum": ["present", "absent"] },
+        "markedBy": { "type": "string" },
+        "timestamp": { "type": "timestamp" }
+      },
+      "required": ["id", "residentId", "date", "status", "markedBy", "timestamp"]
+    },
+    "InOutLog": {
+      "title": "InOutLog",
+      "description": "A log of a resident entering or exiting the hostel.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "residentId": { "type": "string" },
+        "type": { "type": "string", "enum": ["entry", "exit"] },
+        "timestamp": { "type": "timestamp" },
+        "markedBy": { "type": "string" }
+      },
+      "required": ["id", "residentId", "type", "timestamp", "markedBy"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Stores user profiles and roles."
+    },
+    "/residents/{residentId}": {
+      "schema": { "$ref": "#/entities/Resident" },
+      "description": "Stores resident profiles."
+    },
+    "/attendance/{attendanceId}": {
+      "schema": { "$ref": "#/entities/Attendance" },
+      "description": "Stores daily attendance records."
+    },
+    "/inOutLogs/{logId}": {
+      "schema": { "$ref": "#/entities/InOutLog" },
+      "description": "Stores entry and exit logs for residents."
+    }
+  }
+}
