@@ -13,6 +13,10 @@ export default function Settings() {
 
   // Profile Form
   const [displayName, setDisplayName] = useState(userData?.displayName || '');
+  const [fatherName, setFatherName] = useState(userData?.fatherName || '');
+  const [cnicNumber, setCnicNumber] = useState(userData?.cnicNumber || '');
+  const [phoneNumber, setPhoneNumber] = useState(userData?.phoneNumber || '');
+  const [roomNumber, setRoomNumber] = useState(userData?.roomNumber || '');
   
   // Password Form
   const [newPassword, setNewPassword] = useState('');
@@ -25,7 +29,13 @@ export default function Settings() {
     setLoading(true);
     try {
       await updateProfile(user, { displayName });
-      await updateDoc(doc(db, 'users', user.uid), { displayName });
+      await updateDoc(doc(db, 'users', user.uid), { 
+        displayName,
+        fatherName,
+        cnicNumber,
+        phoneNumber,
+        roomNumber
+      });
       toast.success('Profile updated successfully');
     } catch (error) {
       handleFirestoreError(error, OperationType.WRITE, 'users');
@@ -126,6 +136,50 @@ export default function Settings() {
                     onChange={(e) => setDisplayName(e.target.value)}
                     className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-shadow"
                     placeholder="Your name"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Father's Name</label>
+                  <input
+                    type="text"
+                    value={fatherName}
+                    onChange={(e) => setFatherName(e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-shadow"
+                    placeholder="Father's name"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">CNIC Number</label>
+                  <input
+                    type="text"
+                    value={cnicNumber}
+                    onChange={(e) => setCnicNumber(e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-shadow"
+                    placeholder="e.g. 12345-1234567-1"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                  <input
+                    type="tel"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-shadow"
+                    placeholder="Your phone number"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Room Number</label>
+                  <input
+                    type="text"
+                    value={roomNumber}
+                    onChange={(e) => setRoomNumber(e.target.value)}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-shadow"
+                    placeholder="e.g. 101"
                   />
                 </div>
 

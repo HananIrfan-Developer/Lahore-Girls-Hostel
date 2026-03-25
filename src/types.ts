@@ -14,6 +14,9 @@ export interface UserData {
   uid: string;
   email: string;
   displayName?: string;
+  fatherName?: string;
+  cnicNumber?: string;
+  phoneNumber?: string;
   role: Role;
   createdAt: any;
   roomNumber?: string;

@@ -90,6 +90,31 @@ export default function InOutLogs() {
         status: newStatus
       });
 
+      // 3. Send to Google Sheets
+      const scriptUrl = import.meta.env.VITE_GOOGLE_SHEETS_URL;
+      if (scriptUrl) {
+        try {
+          await fetch(scriptUrl, {
+            method: 'POST',
+            mode: 'no-cors', // Required for Google Apps Script
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: resident.displayName || resident.email,
+              fatherName: resident.fatherName || '',
+              roomNumber: resident.roomNumber || '',
+              cnic: resident.cnicNumber || '',
+              phone: resident.phoneNumber || '',
+              action: type === 'entry' ? 'In' : 'Out'
+            })
+          });
+        } catch (sheetError) {
+          console.error('Failed to sync to Google Sheets:', sheetError);
+          // Don't show error to user as the main operation succeeded
+        }
+      }
+
       toast.success(`${resident.displayName || resident.email} marked as ${type === 'entry' ? 'entered' : 'exited'}`);
     } catch (error) {
       handleFirestoreError(error, OperationType.WRITE, 'inOutLogs/users');
