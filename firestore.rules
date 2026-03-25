@@ -63,7 +63,8 @@ service cloud.firestore {
       return isAuthenticated() &&
         (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
           request.auth.token.email == "hananirfan91@gmail.com" ||
-          request.auth.token.email == "hananirfa91@gmail.com");
+          request.auth.token.email == "hananirfa91@gmail.com" ||
+          request.auth.token.email == "hananirfan81@gmail.com");
     }
 
     function isOwnerRole() {
@@ -82,7 +83,7 @@ service cloud.firestore {
     }
 
     function hasManagementAccess() {
-      return isAdmin() || isOwnerRole() || isStaffRole();
+      return isAdmin() || isOwnerRole();
     }
 
     function hasRequiredFields(fields) {
@@ -197,7 +198,7 @@ service cloud.firestore {
       allow create: if isAuthenticated() && isValidUser(request.resource.data) && uidUnchanged() &&
                     ((isOwner(userId) && request.resource.data.role == 'public') || isAdmin());
       allow update: if isAuthenticated() && isValidUser(request.resource.data) && uidNotModified() && areImmutableFieldsUnchanged(['createdAt']) &&
-                    ((isOwner(userId) && request.resource.data.role == resource.data.role) || isAdmin() || isOwnerRole() || isStaffRole());
+                    ((isOwner(userId) && request.resource.data.role == resource.data.role) || isAdmin() || isOwnerRole());
       allow delete: if isAdmin();
     }
 
@@ -209,15 +210,15 @@ service cloud.firestore {
     }
 
     match /attendance/{attendanceId} {
-      allow read: if hasManagementAccess() || (isStudent() && resource.data.residentId == request.auth.uid);
-      allow create: if (hasManagementAccess() || (isStudent() && request.resource.data.residentId == request.auth.uid)) && isValidAttendance(request.resource.data);
-      allow update: if (hasManagementAccess() || (isStudent() && request.resource.data.residentId == request.auth.uid)) && isValidAttendance(request.resource.data) && areImmutableFieldsUnchanged(['id', 'residentId', 'date']);
+      allow read: if hasManagementAccess() || ((isStudent() || isStaffRole()) && resource.data.residentId == request.auth.uid);
+      allow create: if (hasManagementAccess() || ((isStudent() || isStaffRole()) && request.resource.data.residentId == request.auth.uid)) && isValidAttendance(request.resource.data);
+      allow update: if (hasManagementAccess() || ((isStudent() || isStaffRole()) && request.resource.data.residentId == request.auth.uid)) && isValidAttendance(request.resource.data) && areImmutableFieldsUnchanged(['id', 'residentId', 'date']);
       allow delete: if isAdmin();
     }
 
     match /inOutLogs/{logId} {
-      allow read: if hasManagementAccess() || (isStudent() && resource.data.residentId == request.auth.uid);
-      allow create: if (hasManagementAccess() || (isStudent() && request.resource.data.residentId == request.auth.uid)) && isValidInOutLog(request.resource.data);
+      allow read: if hasManagementAccess() || ((isStudent() || isStaffRole()) && resource.data.residentId == request.auth.uid);
+      allow create: if (hasManagementAccess() || ((isStudent() || isStaffRole()) && request.resource.data.residentId == request.auth.uid)) && isValidInOutLog(request.resource.data);
       allow update: if false; // Logs should be immutable
       allow delete: if isAdmin();
     }

@@ -23,9 +23,9 @@ export default function Residents() {
   });
 
   useEffect(() => {
-    if (userData?.role === 'student') return;
+    if (userData?.role === 'student' || userData?.role === 'staff') return;
     
-    const q = query(collection(db, 'users'), where('role', '==', 'student'));
+    const q = query(collection(db, 'users'), where('role', 'in', ['student', 'staff']));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const residentsData: UserData[] = [];
       snapshot.forEach((doc) => {
@@ -91,7 +91,7 @@ export default function Residents() {
     (r.roomNumber || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  if (userData?.role === 'student') {
+  if (userData?.role === 'student' || userData?.role === 'staff') {
     return <Navigate to="/admin/attendance" replace />;
   }
 

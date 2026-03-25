@@ -9,7 +9,7 @@ interface UserData {
   uid: string;
   email: string;
   displayName: string;
-  role: 'admin' | 'owner' | 'staff' | 'public';
+  role: 'admin' | 'owner' | 'staff' | 'student' | 'public';
   createdAt: any;
 }
 
@@ -125,7 +125,7 @@ export default function Staff() {
                       <select
                         value={user.role}
                         onChange={(e) => handleRoleChange(user.uid, e.target.value)}
-                        disabled={userData?.role !== 'admin' || user.email === 'hananirfan91@gmail.com'}
+                        disabled={userData?.role !== 'admin' || user.email === 'hananirfan91@gmail.com' || user.email === 'hananirfa91@gmail.com' || user.email === 'hananirfan81@gmail.com'}
                         className="px-3 py-1.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-pink-500 focus:border-pink-500 disabled:opacity-50 disabled:bg-gray-100"
                       >
                         <option value="public">Public (No Access)</option>

@@ -15,7 +15,7 @@ export default function Dashboard() {
   const { userData } = useAuth();
 
   useEffect(() => {
-    if (userData?.role === 'student') return;
+    if (userData?.role === 'student' || userData?.role === 'staff') return;
 
     const qResidents = query(collection(db, 'residents'));
     const unsubResidents = onSnapshot(qResidents, (snapshot) => {
@@ -47,7 +47,7 @@ export default function Dashboard() {
     };
   }, []);
 
-  if (userData?.role === 'student') {
+  if (userData?.role === 'student' || userData?.role === 'staff') {
     return <Navigate to="/admin/attendance" replace />;
   }
 

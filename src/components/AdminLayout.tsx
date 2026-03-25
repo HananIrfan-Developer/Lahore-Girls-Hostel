@@ -44,7 +44,7 @@ export default function AdminLayout() {
 
   let navItems = [];
   
-  if (userData.role === 'student') {
+  if (userData.role === 'student' || userData.role === 'staff') {
     navItems = [
       { name: 'My Attendance', path: '/admin/attendance', icon: CalendarCheck },
       { name: 'My In/Out Logs', path: '/admin/logs', icon: ArrowLeftRight },
@@ -53,7 +53,7 @@ export default function AdminLayout() {
   } else {
     navItems = [
       { name: 'Dashboard', path: '/admin', icon: LayoutDashboard },
-      { name: 'Residents', path: '/admin/residents', icon: Users },
+      { name: 'Residents & Staff', path: '/admin/residents', icon: Users },
       { name: 'Attendance', path: '/admin/attendance', icon: CalendarCheck },
       { name: 'In/Out Logs', path: '/admin/logs', icon: ArrowLeftRight },
     ];
@@ -75,7 +75,7 @@ export default function AdminLayout() {
         <div className="h-20 flex items-center justify-center border-b border-gray-100 px-4">
           {isSidebarOpen ? (
             <span className="text-xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent truncate w-full text-center">
-              LGH Admin
+              Lahore Girls Hostel
             </span>
           ) : (
             <span className="text-xl font-bold text-pink-600">LGH</span>
@@ -138,7 +138,7 @@ export default function AdminLayout() {
       {/* Mobile Header & Sidebar */}
       <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-white shadow-sm z-30 flex items-center justify-between px-4">
         <span className="text-lg font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-          LGH Admin
+          Lahore Girls Hostel
         </span>
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}

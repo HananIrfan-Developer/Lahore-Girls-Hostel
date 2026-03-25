@@ -38,7 +38,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           } else {
             // Check if this is the admin email
             const userEmail = (firebaseUser.email || '').toLowerCase();
-            const role: Role = (userEmail === 'hananirfan91@gmail.com' || userEmail === 'hananirfa91@gmail.com') ? 'admin' : 'public';
+            const role: Role = (userEmail === 'hananirfan91@gmail.com' || userEmail === 'hananirfa91@gmail.com' || userEmail === 'hananirfan81@gmail.com') ? 'admin' : 'public';
             
             const newUserData: any = {
               uid: firebaseUser.uid,

@@ -17,7 +17,7 @@ export default function InOutLogs() {
   useEffect(() => {
     let unsubResidents: () => void;
     
-    if (userData?.role === 'student') {
+    if (userData?.role === 'student' || userData?.role === 'staff') {
       unsubResidents = onSnapshot(doc(db, 'users', userData.uid), (docSnap) => {
         if (docSnap.exists()) {
           setResidents([{ uid: docSnap.id, ...docSnap.data() } as UserData]);
@@ -26,7 +26,7 @@ export default function InOutLogs() {
         handleFirestoreError(error, OperationType.GET, 'users');
       });
     } else {
-      const qResidents = query(collection(db, 'users'), where('role', '==', 'student'));
+      const qResidents = query(collection(db, 'users'), where('role', 'in', ['student', 'staff']));
       unsubResidents = onSnapshot(qResidents, (snapshot) => {
         const residentsData: UserData[] = [];
         snapshot.forEach((docSnap) => {
@@ -41,8 +41,8 @@ export default function InOutLogs() {
     // Fetch logs
     let qLogs = query(collection(db, 'inOutLogs'), orderBy('timestamp', 'desc'), limit(100));
     
-    // If student, only fetch their own logs
-    if (userData?.role === 'student') {
+    // If student or staff, only fetch their own logs
+    if (userData?.role === 'student' || userData?.role === 'staff') {
       qLogs = query(collection(db, 'inOutLogs'), where('residentId', '==', userData.uid), orderBy('timestamp', 'desc'), limit(100));
     }
 
@@ -98,7 +98,7 @@ export default function InOutLogs() {
   };
 
   const filteredResidents = residents.filter(r => {
-    if (userData?.role === 'student' && r.uid !== userData.uid) return false;
+    if ((userData?.role === 'student' || userData?.role === 'staff') && r.uid !== userData.uid) return false;
     return (r.displayName || r.email).toLowerCase().includes(searchTerm.toLowerCase()) ||
            (r.roomNumber || '').toLowerCase().includes(searchTerm.toLowerCase());
   });
