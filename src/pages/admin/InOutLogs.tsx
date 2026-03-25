@@ -91,14 +91,14 @@ export default function InOutLogs() {
       });
 
       // 3. Send to Google Sheets
-      const scriptUrl = import.meta.env.VITE_GOOGLE_SHEETS_URL;
+      const scriptUrl = (import.meta as any).env.VITE_GOOGLE_SHEETS_URL;
       if (scriptUrl) {
         try {
           await fetch(scriptUrl, {
             method: 'POST',
             mode: 'no-cors', // Required for Google Apps Script
             headers: {
-              'Content-Type': 'application/json',
+              'Content-Type': 'text/plain;charset=utf-8',
             },
             body: JSON.stringify({
               name: resident.displayName || resident.email,
@@ -106,6 +106,7 @@ export default function InOutLogs() {
               roomNumber: resident.roomNumber || '',
               cnic: resident.cnicNumber || '',
               phone: resident.phoneNumber || '',
+              address: resident.address || '',
               action: type === 'entry' ? 'In' : 'Out'
             })
           });

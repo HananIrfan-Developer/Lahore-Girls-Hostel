@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { collection, onSnapshot, query, doc, updateDoc, where } from 'firebase/firestore';
+import { collection, onSnapshot, query, doc, updateDoc, deleteDoc, where } from 'firebase/firestore';
 import { db, handleFirestoreError, OperationType } from '../../firebase';
 import { UserData } from '../../types';
 import { Users, Search, Plus, Edit2, Trash2, X, MapPin, Phone, Check } from 'lucide-react';
@@ -75,13 +75,13 @@ export default function Residents() {
   };
 
   const handleDelete = async (id: string) => {
-    if (window.confirm('Are you sure you want to remove this resident? Their role will be changed to public.')) {
+    if (window.confirm('Are you sure you want to permanently delete this resident?')) {
       try {
-        await updateDoc(doc(db, 'users', id), { role: 'public' });
-        toast.success('Resident removed successfully');
+        await deleteDoc(doc(db, 'users', id));
+        toast.success('Resident deleted successfully');
       } catch (error) {
         handleFirestoreError(error, OperationType.DELETE, `users/${id}`);
-        toast.error('Failed to remove resident');
+        toast.error('Failed to delete resident');
       }
     }
   };
@@ -170,7 +170,7 @@ export default function Residents() {
                           <button
                             onClick={() => handleDelete(resident.uid)}
                             className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                            title="Remove"
+                            title="Delete"
                           >
                             <Trash2 size={18} />
                           </button>

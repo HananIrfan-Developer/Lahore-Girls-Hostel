@@ -46,7 +46,7 @@ export default function Home() {
                   <ArrowRight className="ml-2 -mr-1 w-5 h-5" />
                 </Link>
                 <Link 
-                  to="/facilities" 
+                  to="/about" 
                   className="inline-flex justify-center items-center px-8 py-3.5 border-2 border-pink-200 text-base font-medium rounded-full text-pink-700 bg-white hover:bg-pink-50 transition-all"
                 >
                   Explore Facilities
@@ -62,14 +62,21 @@ export default function Home() {
             >
               <div className="absolute -inset-4 bg-gradient-to-r from-pink-400 to-purple-500 rounded-2xl blur-lg opacity-30 animate-pulse"></div>
               <img 
-                src="https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                alt="Modern Hostel Building" 
-                className="relative rounded-2xl shadow-2xl object-cover h-[500px] w-full"
-                referrerPolicy="no-referrer"
+                src="/hero-logo.jpg" 
+                alt="Lahore Girls Hostel Logo" 
+                className="relative rounded-full shadow-2xl object-cover h-[500px] w-[500px] mx-auto border-8 border-white"
+                onError={(e) => {
+                  e.currentTarget.src = "https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80";
+                }}
               />
               
               {/* Floating Badge */}
-              <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-xl flex items-center gap-4">
+              <motion.div 
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.8 }}
+                className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-xl flex items-center gap-4"
+              >
                 <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
                   <Shield size={24} />
                 </div>
@@ -77,7 +84,7 @@ export default function Home() {
                   <p className="text-sm font-bold text-gray-900">24/7 Security</p>
                   <p className="text-xs text-gray-500">CCTV & Guards</p>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -86,10 +93,15 @@ export default function Home() {
       {/* Features Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Us?</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">We provide everything you need for a comfortable and productive stay.</p>
-          </div>
+          </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -100,6 +112,10 @@ export default function Home() {
             ].map((feature, idx) => (
               <motion.div 
                 key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
                 whileHover={{ y: -5 }}
                 className="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:shadow-lg transition-all"
               >
@@ -117,10 +133,15 @@ export default function Home() {
       {/* Reviews Section */}
       <section className="py-20 bg-pink-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
             <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Residents Say</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">Hear from the girls who call Lahore Girls Hostel their second home.</p>
-          </div>
+          </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[

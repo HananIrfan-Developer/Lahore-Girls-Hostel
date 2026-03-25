@@ -85,6 +85,35 @@ export default function AttendancePage() {
       };
 
       await setDoc(doc(db, 'attendance', attendanceId), attendanceData);
+
+      // Send to Google Sheets
+      const scriptUrl = (import.meta as any).env.VITE_GOOGLE_SHEETS_URL;
+      if (scriptUrl) {
+        try {
+          const resident = residents.find(r => r.uid === residentId);
+          await fetch(scriptUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'text/plain;charset=utf-8',
+            },
+            body: JSON.stringify({
+              type: 'Attendance',
+              date: selectedDate,
+              name: resident?.displayName || resident?.email || 'Unknown',
+              fatherName: resident?.fatherName || '',
+              roomNumber: resident?.roomNumber || '',
+              cnic: resident?.cnicNumber || '',
+              phone: resident?.phoneNumber || '',
+              address: resident?.address || '',
+              status: status
+            })
+          });
+        } catch (sheetError) {
+          console.error('Failed to sync to Google Sheets:', sheetError);
+        }
+      }
+
       toast.success(`Marked as ${status}`);
     } catch (error) {
       handleFirestoreError(error, OperationType.WRITE, 'attendance');

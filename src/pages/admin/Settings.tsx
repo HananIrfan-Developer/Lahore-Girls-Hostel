@@ -16,6 +16,7 @@ export default function Settings() {
   const [fatherName, setFatherName] = useState(userData?.fatherName || '');
   const [cnicNumber, setCnicNumber] = useState(userData?.cnicNumber || '');
   const [phoneNumber, setPhoneNumber] = useState(userData?.phoneNumber || '');
+  const [address, setAddress] = useState(userData?.address || '');
   const [roomNumber, setRoomNumber] = useState(userData?.roomNumber || '');
   
   // Password Form
@@ -34,6 +35,7 @@ export default function Settings() {
         fatherName,
         cnicNumber,
         phoneNumber,
+        address,
         roomNumber
       });
       toast.success('Profile updated successfully');
@@ -169,6 +171,17 @@ export default function Settings() {
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-shadow"
                     placeholder="Your phone number"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                  <textarea
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    rows={3}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-shadow resize-none"
+                    placeholder="Your permanent address"
                   />
                 </div>
 
