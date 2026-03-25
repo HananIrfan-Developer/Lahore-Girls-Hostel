@@ -120,7 +120,7 @@ service cloud.firestore {
     function isValidOptionalString(field, minLen, maxLen) {
       return !(field in request.resource.data) ||
              (request.resource.data[field] is string &&
-              request.resource.data[field].size() >= minLen &&
+              request.resource.data[field].size() >= 0 &&
               request.resource.data[field].size() <= maxLen);
     }
 
@@ -129,14 +129,18 @@ service cloud.firestore {
     // ===============================================================
 
     function isValidUser(data) {
-      return hasOnlyAllowedFields(['uid', 'email', 'displayName', 'role', 'createdAt', 'roomNumber', 'contactDetails', 'guardianInfo', 'status']) &&
+      return hasOnlyAllowedFields(['uid', 'email', 'displayName', 'role', 'createdAt', 'roomNumber', 'contactDetails', 'guardianInfo', 'status', 'fatherName', 'cnicNumber', 'phoneNumber', 'address']) &&
              hasRequiredFields(['uid', 'email', 'role', 'createdAt']) &&
              data.uid is string && data.uid.size() > 0 && data.uid.size() < 100 &&
              isValidEmail(data.email) &&
-             isValidOptionalString('displayName', 1, 100) &&
-             isValidOptionalString('roomNumber', 1, 20) &&
-             isValidOptionalString('contactDetails', 1, 200) &&
-             isValidOptionalString('guardianInfo', 1, 500) &&
+             isValidOptionalString('displayName', 0, 100) &&
+             isValidOptionalString('roomNumber', 0, 20) &&
+             isValidOptionalString('contactDetails', 0, 200) &&
+             isValidOptionalString('guardianInfo', 0, 500) &&
+             isValidOptionalString('fatherName', 0, 100) &&
+             isValidOptionalString('cnicNumber', 0, 20) &&
+             isValidOptionalString('phoneNumber', 0, 20) &&
+             isValidOptionalString('address', 0, 500) &&
              (!( 'status' in data ) || data.status in ['inside', 'outside']) &&
              data.role in ['admin', 'owner', 'staff', 'student', 'public'] &&
              data.createdAt is timestamp;
