@@ -3,6 +3,7 @@ import { Outlet, Link, useLocation } from 'react-router';
 import { motion } from 'motion/react';
 import { Menu, X, MapPin, Phone, Mail, Home, Info, Image, MessageSquare } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import InstallPWA from './InstallPWA';
 
 export default function PublicLayout() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -44,6 +45,7 @@ export default function PublicLayout() {
 
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center space-x-8">
+              <InstallPWA />
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
@@ -118,6 +120,9 @@ export default function PublicLayout() {
               >
                 {userData && ['admin', 'owner', 'staff'].includes(userData.role) ? "Dashboard" : "Login"}
               </Link>
+              <div className="mt-4 flex justify-center">
+                <InstallPWA />
+              </div>
             </div>
           </motion.div>
         )}

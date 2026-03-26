@@ -12,7 +12,7 @@ export default defineConfig(({mode}) => {
       tailwindcss(),
       VitePWA({
         registerType: 'autoUpdate',
-        includeAssets: ['hero-logo.jpg', 'robots.txt', 'sitemap.xml'],
+        includeAssets: ['pwa-icon.svg', 'robots.txt', 'sitemap.xml'],
         manifest: {
           name: 'Lahore Girls Hostel',
           short_name: 'LGH',
@@ -22,16 +22,25 @@ export default defineConfig(({mode}) => {
           display: 'standalone',
           icons: [
             {
-              src: '/hero-logo.jpg',
+              src: '/pwa-icon.svg',
               sizes: '192x192',
-              type: 'image/jpeg'
+              type: 'image/svg+xml'
             },
             {
-              src: '/hero-logo.jpg',
+              src: '/pwa-icon.svg',
               sizes: '512x512',
-              type: 'image/jpeg'
+              type: 'image/svg+xml'
+            },
+            {
+              src: '/pwa-icon.svg',
+              sizes: '512x512',
+              type: 'image/svg+xml',
+              purpose: 'any maskable'
             }
           ]
+        },
+        devOptions: {
+          enabled: true
         }
       })
     ],

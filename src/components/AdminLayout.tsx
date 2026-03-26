@@ -16,6 +16,7 @@ import {
 import { useAuth } from '../contexts/AuthContext';
 import { auth } from '../firebase';
 import { signOut } from 'firebase/auth';
+import InstallPWA from './InstallPWA';
 
 export default function AdminLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
@@ -210,6 +211,7 @@ export default function AdminLayout() {
           </div>
           
           <div className="flex items-center space-x-4">
+            <InstallPWA />
             <Link to="/" className="text-sm font-medium text-gray-500 hover:text-pink-600 transition-colors flex items-center bg-gray-50 px-3 py-1.5 rounded-full border border-gray-200">
               <Home size={14} className="mr-1.5" />
               View Website
