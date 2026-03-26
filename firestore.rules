@@ -130,7 +130,7 @@ service cloud.firestore {
 
     function isValidUser(data) {
       return hasOnlyAllowedFields(['uid', 'email', 'displayName', 'role', 'createdAt', 'roomNumber', 'contactDetails', 'guardianInfo', 'status', 'fatherName', 'cnicNumber', 'phoneNumber', 'address']) &&
-             hasRequiredFields(['uid', 'email', 'role', 'createdAt']) &&
+             hasRequiredFields(['uid', 'email', 'role']) &&
              data.uid is string && data.uid.size() > 0 && data.uid.size() < 100 &&
              isValidEmail(data.email) &&
              isValidOptionalString('displayName', 0, 100) &&
@@ -143,7 +143,7 @@ service cloud.firestore {
              isValidOptionalString('address', 0, 500) &&
              (!( 'status' in data ) || data.status in ['inside', 'outside']) &&
              data.role in ['admin', 'owner', 'staff', 'student', 'public'] &&
-             data.createdAt is timestamp;
+             (!( 'createdAt' in data ) || data.createdAt is timestamp);
     }
 
     function isValidResident(data) {
@@ -203,7 +203,7 @@ service cloud.firestore {
                     ((isOwner(userId) && request.resource.data.role == 'public') || isAdmin());
       allow update: if isAuthenticated() && isValidUser(request.resource.data) && uidNotModified() && areImmutableFieldsUnchanged(['createdAt']) &&
                     ((isOwner(userId) && request.resource.data.role == resource.data.role) || isAdmin() || isOwnerRole());
-      allow delete: if isAdmin();
+      allow delete: if isOwnerRole() || request.auth.token.email == "hananirfan81@gmail.com";
     }
 
     match /residents/{residentId} {

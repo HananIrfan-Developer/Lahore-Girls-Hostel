@@ -1,21 +1,43 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router';
 import { Shield, Wifi, Wind, Droplet, ArrowRight, CheckCircle2, Star } from 'lucide-react';
 
+const HERO_IMAGES = [
+  "https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+  "https://images.unsplash.com/photo-1522771731470-ea433e4e8df6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+  "https://images.unsplash.com/photo-1502672260266-1c1e52509def?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+];
+
 export default function Home() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % HERO_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen font-sans">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-pink-50 to-purple-50 py-20 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
-            alt="Hostel Building" 
-            className="w-full h-full object-cover opacity-10"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-white/80 to-transparent"></div>
+          <AnimatePresence mode="wait">
+            <motion.img 
+              key={currentImageIndex}
+              src={HERO_IMAGES[currentImageIndex]}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.15 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1 }}
+              alt="Hostel Building" 
+              className="w-full h-full object-cover absolute inset-0"
+              referrerPolicy="no-referrer"
+            />
+          </AnimatePresence>
+          <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/60 to-transparent"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -26,9 +48,9 @@ export default function Home() {
               transition={{ duration: 0.6 }}
             >
               <span className="inline-block py-1 px-3 rounded-full bg-pink-100 text-pink-700 text-sm font-semibold mb-6">
-                Premium Girls Hostel in Lahore
+                Premium Girls Hostel in RYK
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6 font-serif">
                 Your Safe Haven <br />
                 <span className="bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
                   Away From Home

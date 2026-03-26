@@ -109,7 +109,7 @@ export default function About() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Story</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Founded with a vision to revolutionize female accommodation in Lahore.</p>
+            <p className="text-gray-600 max-w-2xl mx-auto">Founded with a vision to revolutionize accommodation in Lahore.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

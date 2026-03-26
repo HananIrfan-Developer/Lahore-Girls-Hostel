@@ -74,11 +74,11 @@ export default function AdminLayout() {
       >
         <div className="h-20 flex items-center justify-center border-b border-gray-100 px-4">
           {isSidebarOpen ? (
-            <span className="text-xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent truncate w-full text-center">
+            <span className="text-xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent truncate w-full text-center font-serif">
               Lahore Girls Hostel
             </span>
           ) : (
-            <span className="text-xl font-bold text-pink-600">LGH</span>
+            <span className="text-xl font-bold text-pink-600 font-serif">LGH</span>
           )}
         </div>
 
@@ -137,7 +137,7 @@ export default function AdminLayout() {
 
       {/* Mobile Header & Sidebar */}
       <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-white shadow-sm z-30 flex items-center justify-between px-4">
-        <span className="text-lg font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+        <span className="text-lg font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent font-serif">
           Lahore Girls Hostel
         </span>
         <button

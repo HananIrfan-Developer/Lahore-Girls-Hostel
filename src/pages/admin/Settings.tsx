@@ -81,7 +81,7 @@ export default function Settings() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-900 flex items-center">
+        <h2 className="text-2xl font-bold text-gray-900 flex items-center font-serif">
           <SettingsIcon className="mr-3 text-pink-600" />
           Settings
         </h2>
@@ -117,7 +117,7 @@ export default function Settings() {
         <div className="flex-1">
           {activeTab === 'profile' && (
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-6">Profile Information</h3>
+              <h3 className="text-lg font-bold text-gray-900 mb-6 font-serif">Profile Information</h3>
               <form onSubmit={handleUpdateProfile} className="space-y-4 max-w-md">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
@@ -219,7 +219,7 @@ export default function Settings() {
 
           {activeTab === 'security' && (
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-6">Change Password</h3>
+              <h3 className="text-lg font-bold text-gray-900 mb-6 font-serif">Change Password</h3>
               <form onSubmit={handleUpdatePassword} className="space-y-4 max-w-md">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">New Password</label>

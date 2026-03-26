@@ -91,23 +91,25 @@ export default function AttendancePage() {
       if (scriptUrl) {
         try {
           const resident = residents.find(r => r.uid === residentId);
+          const params = new URLSearchParams();
+          params.append('type', 'Attendance');
+          params.append('date', selectedDate);
+          params.append('name', resident?.displayName || resident?.email || 'Unknown');
+          params.append('fatherName', resident?.fatherName || '');
+          params.append('roomNumber', resident?.roomNumber || '');
+          params.append('cnic', resident?.cnicNumber || '');
+          params.append('phone', resident?.phoneNumber || '');
+          params.append('address', resident?.address || '');
+          params.append('status', status);
+          params.append('timestamp', new Date().toISOString());
+
           await fetch(scriptUrl, {
             method: 'POST',
             mode: 'no-cors',
             headers: {
-              'Content-Type': 'text/plain;charset=utf-8',
+              'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify({
-              type: 'Attendance',
-              date: selectedDate,
-              name: resident?.displayName || resident?.email || 'Unknown',
-              fatherName: resident?.fatherName || '',
-              roomNumber: resident?.roomNumber || '',
-              cnic: resident?.cnicNumber || '',
-              phone: resident?.phoneNumber || '',
-              address: resident?.address || '',
-              status: status
-            })
+            body: params.toString()
           });
         } catch (sheetError) {
           console.error('Failed to sync to Google Sheets:', sheetError);
@@ -144,7 +146,7 @@ export default function AttendancePage() {
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 flex items-center">
+            <h2 className="text-2xl font-bold text-gray-900 flex items-center font-serif">
               <Calendar className="mr-3 text-pink-600" size={28} />
               Daily Attendance
             </h2>

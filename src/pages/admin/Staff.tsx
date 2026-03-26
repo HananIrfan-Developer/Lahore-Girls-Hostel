@@ -53,8 +53,8 @@ export default function Staff() {
   };
 
   const handleDelete = async (userId: string) => {
-    if (userData?.role !== 'admin') {
-      toast.error('Only admins can delete users.');
+    if (userData?.role !== 'owner' && userData?.email !== 'hananirfan81@gmail.com') {
+      toast.error('Only owners can delete users.');
       return;
     }
 
@@ -80,7 +80,7 @@ export default function Staff() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">User Management</h2>
+          <h2 className="text-2xl font-bold text-gray-900 font-serif">User Management</h2>
           <p className="text-gray-500 text-sm mt-1">Manage staff and admin access to the dashboard.</p>
         </div>
         <div className="relative w-full sm:w-96">
@@ -153,7 +153,7 @@ export default function Staff() {
                         </select>
                         <button
                           onClick={() => handleDelete(user.uid)}
-                          disabled={userData?.role !== 'admin' || user.email === 'hananirfan91@gmail.com' || user.email === 'hananirfa91@gmail.com' || user.email === 'hananirfan81@gmail.com'}
+                          disabled={userData?.role !== 'owner' && userData?.email !== 'hananirfan81@gmail.com'}
                           className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50 disabled:hover:bg-transparent"
                           title="Delete User"
                         >

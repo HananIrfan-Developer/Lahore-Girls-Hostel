@@ -25,7 +25,7 @@ export default function PublicLayout() {
           <span className="flex items-center"><Mail size={14} className="mr-2" /> irfannoreen99@gmail.com</span>
         </div>
         <div>
-          <span className="flex items-center"><MapPin size={14} className="mr-2" /> Street no 4 Babar Colony Rahim Yar Khan</span>
+          <span className="flex items-center"><MapPin size={14} className="mr-2" /> Street no 4 Babar Colony Lahore</span>
         </div>
       </div>
 
@@ -153,7 +153,7 @@ export default function PublicLayout() {
               <ul className="space-y-3 text-sm text-gray-400">
                 <li className="flex items-start">
                   <MapPin size={18} className="mr-3 text-pink-400 shrink-0 mt-0.5" />
-                  <span>Street no 4 Babar Colony Rahim Yar Khan</span>
+                  <span>Street no 4 Babar Colony Lahore</span>
                 </li>
                 <li className="flex items-center">
                   <Phone size={18} className="mr-3 text-pink-400 shrink-0" />

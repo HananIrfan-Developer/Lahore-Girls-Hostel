@@ -160,7 +160,7 @@ export default function Contact() {
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">Our Location</h3>
                     <p className="text-gray-600 leading-relaxed">
                       Street no 4 Babar Colony<br />
-                      Rahim Yar Khan, Punjab, Pakistan
+                      Lahore, Punjab, Pakistan
                     </p>
                   </div>
                 </div>

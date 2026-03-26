@@ -94,21 +94,24 @@ export default function InOutLogs() {
       const scriptUrl = (import.meta as any).env.VITE_GOOGLE_SHEETS_URL;
       if (scriptUrl) {
         try {
+          const params = new URLSearchParams();
+          params.append('type', 'InOut');
+          params.append('name', resident.displayName || resident.email || 'Unknown');
+          params.append('fatherName', resident.fatherName || '');
+          params.append('roomNumber', resident.roomNumber || '');
+          params.append('cnic', resident.cnicNumber || '');
+          params.append('phone', resident.phoneNumber || '');
+          params.append('address', resident.address || '');
+          params.append('action', type === 'entry' ? 'In' : 'Out');
+          params.append('timestamp', new Date().toISOString());
+
           await fetch(scriptUrl, {
             method: 'POST',
             mode: 'no-cors', // Required for Google Apps Script
             headers: {
-              'Content-Type': 'text/plain;charset=utf-8',
+              'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify({
-              name: resident.displayName || resident.email,
-              fatherName: resident.fatherName || '',
-              roomNumber: resident.roomNumber || '',
-              cnic: resident.cnicNumber || '',
-              phone: resident.phoneNumber || '',
-              address: resident.address || '',
-              action: type === 'entry' ? 'In' : 'Out'
-            })
+            body: params.toString()
           });
         } catch (sheetError) {
           console.error('Failed to sync to Google Sheets:', sheetError);
@@ -140,7 +143,7 @@ export default function InOutLogs() {
     <div className="space-y-8">
       {/* Quick Mark Section */}
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-6">Quick Entry/Exit</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 font-serif">Quick Entry/Exit</h2>
         
         <div className="relative w-full max-w-md mb-6">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
@@ -199,7 +202,7 @@ export default function InOutLogs() {
       {/* Recent Logs Table */}
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
         <div className="p-6 border-b border-gray-100 flex justify-between items-center">
-          <h2 className="text-xl font-bold text-gray-900 flex items-center">
+          <h2 className="text-xl font-bold text-gray-900 flex items-center font-serif">
             <Clock className="mr-2 text-pink-600" size={24} />
             Recent Activity Logs
           </h2>
