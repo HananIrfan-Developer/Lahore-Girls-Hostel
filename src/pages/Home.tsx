@@ -48,16 +48,16 @@ export default function Home() {
               transition={{ duration: 0.6 }}
             >
               <span className="inline-block py-1 px-3 rounded-full bg-pink-100 text-pink-700 text-sm font-semibold mb-6">
-                Premium Girls Hostel in RYK
+                Best Girls Hostel in Rahim Yar Khan
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6 font-serif">
                 Your Safe Haven <br />
                 <span className="bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-                  Away From Home
+                  in RYK Punjab
                 </span>
               </h1>
               <p className="text-lg text-gray-600 mb-8 max-w-lg leading-relaxed">
-                Experience comfort, security, and a vibrant community at Lahore Girls Hostel. Designed exclusively for students and professionals.
+                Experience comfort, security, and a vibrant community at Lahore Girls Hostel. The most secure and affordable female hostel in Rahim Yar Khan, designed exclusively for students and working women.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link 
@@ -196,6 +196,43 @@ export default function Home() {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SEO Content Section */}
+      <section className="py-16 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="prose prose-pink max-w-none text-gray-600">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Finding the Best Girls Hostel in Rahim Yar Khan</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <p className="mb-4">
+                  When searching for a <strong>ladies hostel in Rahim Yar Khan</strong>, safety, affordability, and location are the top priorities. Lahore Girls Hostel stands out as the most <strong>secure girls hostel in Rahim Yar Khan</strong>, offering a premium living experience for both students and working professionals. Whether you are looking for a <strong>working women hostel Rahim Yar Khan</strong> or a <strong>hostel for female students in Rahim Yar Khan</strong>, our facility is designed to meet your needs.
+                </p>
+                <p className="mb-4">
+                  Location is everything. If you are searching for a <strong>girls hostel near Sheikh Zayed Hospital Rahim Yar Khan</strong> or a <strong>girls hostel near Islamia University Rahim Yar Khan</strong>, our central location provides easy access to major educational and medical institutions. We are the ideal <strong>hostel near college for girls RYK</strong>, ensuring your daily commute is hassle-free.
+                </p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 mt-6">Premium Facilities & Amenities</h3>
+                <p className="mb-4">
+                  We understand the importance of comfort. That's why we offer a fully <strong>furnished girls hostel in Rahim Yar Khan</strong>. Our residents enjoy a <strong>girls hostel with mess facility in Rahim Yar Khan</strong>, providing nutritious and hygienic meals daily. For those seeking privacy, we offer a <strong>hostel with attached bathroom girls RYK</strong>. Stay connected with our high-speed <strong>hostel with WiFi in Rahim Yar Khan</strong>, and commute safely with our <strong>girls hostel with transport facility RYK</strong>.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Uncompromising Security</h3>
+                <p className="mb-4">
+                  Safety is our core value. As a leading <strong>girls hostel with security in Rahim Yar Khan</strong>, we provide 24/7 guard presence and are a fully equipped <strong>girls hostel with CCTV in RYK</strong>. We follow strict safety protocols, offering peace of mind to parents and residents alike. When considering <strong>safety tips for girls living in hostels</strong>, choosing a verified, secure facility like ours is the most important step.
+                </p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 mt-6">Affordable Living in RYK</h3>
+                <p className="mb-4">
+                  Managing the <strong>cost of living in Rahim Yar Khan for students</strong> can be challenging. We pride ourselves on being an <strong>affordable girls hostel in Rahim Yar Khan</strong> without compromising on quality. If you are looking for a <strong>cheap girls hostel in RYK</strong> that still offers premium amenities, Lahore Girls Hostel is your best choice. When comparing a <strong>hostel vs renting room in RYK</strong>, our all-inclusive packages (including mess, WiFi, and utilities) offer unmatched value.
+                </p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 mt-6">Modern Management</h3>
+                <p>
+                  We utilize a state-of-the-art <strong>student hostel management system</strong> to ensure smooth operations. Our <strong>hostel software for small hostels</strong> handles everything from attendance to complaints, making us a pioneer in <strong>hostel management system Pakistan</strong>. Experience seamless living with our integrated <strong>hostel booking system Pakistan</strong>.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

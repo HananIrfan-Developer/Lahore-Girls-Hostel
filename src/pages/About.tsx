@@ -27,10 +27,10 @@ export default function About() {
             >
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                At Lahore Girls Hostel, our mission is to create a home away from home. We understand the challenges faced by female students and professionals moving to a new city. Our goal is to alleviate those concerns by offering a sanctuary that prioritizes safety, hygiene, and community.
+                At Lahore Girls Hostel, our mission is to create a home away from home. We understand the challenges faced by female students and professionals moving to a new city. Our goal is to alleviate those concerns by offering a sanctuary that prioritizes safety, hygiene, and community. We strive to be the <strong>best girls hostel in Rahim Yar Khan</strong>.
               </p>
               <p className="text-gray-600 mb-8 leading-relaxed">
-                We believe that a supportive living environment is crucial for academic and professional success. That's why we've designed our facilities to cater to the modern woman's needs, fostering independence while ensuring peace of mind for both residents and their families.
+                We believe that a supportive living environment is crucial for academic and professional success. That's why we've designed our facilities to cater to the modern woman's needs, fostering independence while ensuring peace of mind for both residents and their families. Whether you need a <strong>working women hostel Rahim Yar Khan</strong> or a <strong>hostel for female students in Rahim Yar Khan</strong>, we are here for you.
               </p>
 
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Core Values</h3>
@@ -109,7 +109,7 @@ export default function About() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Story</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Founded with a vision to revolutionize accommodation in Lahore.</p>
+            <p className="text-gray-600 max-w-2xl mx-auto">Founded with a vision to revolutionize accommodation in Rahim Yar Khan.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

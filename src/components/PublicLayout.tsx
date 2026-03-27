@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet, Link, useLocation } from 'react-router';
 import { motion } from 'motion/react';
-import { Menu, X, MapPin, Phone, Mail, Home, Info, Image, MessageSquare } from 'lucide-react';
+import { Menu, X, MapPin, Phone, Mail, Home, Info, Image, MessageSquare, Instagram, Facebook, Youtube, Video } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import InstallPWA from './InstallPWA';
 
@@ -136,14 +136,28 @@ export default function PublicLayout() {
       {/* Footer */}
       <footer className="bg-gray-900 text-white pt-12 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div className="md:col-span-2">
               <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-pink-400 to-purple-400 bg-clip-text text-transparent">
                 Lahore Girls Hostel
               </h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
-                Providing a safe, comfortable, and modern living environment for female students and professionals in the heart of Lahore.
+              <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                Providing a safe, comfortable, and modern living environment for female students and professionals. The best girls hostel in Rahim Yar Khan, offering premium facilities, security, and a vibrant community.
               </p>
+              <div className="flex space-x-4">
+                <a href="https://instagram.com/tearswithhanan/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-pink-400 transition-colors">
+                  <Instagram size={20} />
+                </a>
+                <a href="https://tiktok.com/@pathan_x_babarian565" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-pink-400 transition-colors">
+                  <Video size={20} />
+                </a>
+                <a href="https://facebook.com/HananIrfan001" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-pink-400 transition-colors">
+                  <Facebook size={20} />
+                </a>
+                <a href="https://www.youtube.com/@ancientmystery-0" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-pink-400 transition-colors">
+                  <Youtube size={20} />
+                </a>
+              </div>
             </div>
             <div>
               <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
@@ -171,7 +185,16 @@ export default function PublicLayout() {
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
+          
+          {/* SEO Keywords Section (Visually subtle but readable by search engines) */}
+          <div className="border-t border-gray-800 pt-8 mt-8">
+            <h4 className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">Popular Searches</h4>
+            <p className="text-[10px] text-gray-600 leading-relaxed">
+              girls hostel in Rahim Yar Khan | best girls hostel in Rahim Yar Khan | ladies hostel in Rahim Yar Khan | female hostel in Rahim Yar Khan | girls hostel near me in Rahim Yar Khan | secure girls hostel in Rahim Yar Khan | hostel for girls in RYK Punjab | working women hostel Rahim Yar Khan | girls hostel near Sheikh Zayed Hospital Rahim Yar Khan | girls hostel near Islamia University Rahim Yar Khan | hostel for female students in Rahim Yar Khan | affordable girls hostel in Rahim Yar Khan | cheap girls hostel in RYK | girls hostel with mess facility in Rahim Yar Khan | hostel near college for girls RYK | girls hostel with security in Rahim Yar Khan | girls hostel with CCTV in RYK | hostel with WiFi in Rahim Yar Khan | girls hostel with transport facility RYK | furnished girls hostel in Rahim Yar Khan | hostel with attached bathroom girls RYK | hostel management system for girls hostel | hostel management system Pakistan | hostel software for small hostels | hostel booking system Pakistan | student hostel management system | how to choose a girls hostel in Rahim Yar Khan | best areas to live in Rahim Yar Khan for girls | hostel vs renting room in RYK | safety tips for girls living in hostels | cost of living in Rahim Yar Khan for students
+            </p>
+          </div>
+
+          <div className="border-t border-gray-800 pt-6 mt-6 text-center text-sm text-gray-500">
             <p>&copy; {new Date().getFullYear()} Lahore Girls Hostel. All rights reserved.</p>
           </div>
         </div>
